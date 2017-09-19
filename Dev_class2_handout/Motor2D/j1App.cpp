@@ -9,6 +9,7 @@
 #include "j1Scene.h"
 #include "j1App.h"
 
+#include <iostream>
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 {
@@ -60,15 +61,21 @@ bool j1App::Awake()
 	// TODO 3: Load config.xml file using load_file() method from the xml_document class.
 	// If everything goes well, load the top tag inside the xml_node property
 	// created in the last TODO
+	bool ret = true;
+
 	storeConfig.load_file("config.xml");
 	LOG("File error! SDL_Error: %s\n", SDL_GetError());
 
 	pugi::xml_parse_result result = storeConfig.load_file("config.xml");
-	if (result) {
-
+	if (result)
+	{
+		LOG("No errors.");
 	}
-
-	bool ret = true;
+	else
+	{
+		LOG("Error reading file: %s", result.description());
+		ret = false;
+	}
 
 	p2List_item<j1Module*>* item;
 	item = modules.start;
