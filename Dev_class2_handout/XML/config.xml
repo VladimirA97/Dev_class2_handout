@@ -3,6 +3,11 @@
 
 <config>
   <window>
+    <name value="Game XML"/>
+    <fullscreen value="false"/>
+    <borderless value="false"/>
+    <resizable value="true"/>
+    <fullscreen_window value="false"/>
     <width value="1280"/>
     <height value="720"/>
     <scale value="1"/>
