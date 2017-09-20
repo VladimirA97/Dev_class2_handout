@@ -70,6 +70,7 @@ bool j1App::Awake()
 	if (result)
 	{
 		LOG("No errors.");
+		readBranch = storeConfig.child("config").child("name");
 	}
 	else
 	{

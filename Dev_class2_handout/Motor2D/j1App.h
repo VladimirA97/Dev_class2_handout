@@ -5,6 +5,8 @@
 #include "j1Module.h"
 #include "PugiXml\src\pugixml.hpp"
 
+using namespace pugi;
+
 // Modules
 class j1Window;
 class j1Input;
@@ -69,6 +71,7 @@ public:
 	j1Audio*			audio;
 	j1Scene*			scene;
 
+	xml_node readBranch;
 
 private:
 
@@ -79,8 +82,8 @@ private:
 	// TODO 2: Create two new variables from pugui namespace:
 	// a xml_document to store the while config file and
 	// a xml_node to read specific branches of the xml
-	pugi::xml_document storeConfig;
-	pugi::xml_node readBranch;
+	xml_document storeConfig;
+
 
 	int					argc;
 	char**				args;
