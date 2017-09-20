@@ -16,7 +16,7 @@ public:
 	virtual ~j1Window();
 
 	// Called before render is available
-	bool Awake();
+	bool Awake(xml_node* readBranch);
 
 	// Called before quitting
 	bool CleanUp();

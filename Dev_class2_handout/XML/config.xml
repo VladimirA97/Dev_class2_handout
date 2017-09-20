@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Config file for the game -->
+<!-- configuration file for the game-->
+
 <config>
-  <name>My super awesome game with XML</name>
+  <window>
+    <width value="1280"/>
+    <height value="720"/>
+    <scale value="1"/>
+  </window>
+  <audio>
+    <volume value="1"/>
+  </audio>
 </config>

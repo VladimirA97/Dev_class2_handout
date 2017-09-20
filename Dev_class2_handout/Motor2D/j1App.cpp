@@ -66,7 +66,7 @@ bool j1App::Awake()
 	storeConfig.load_file("config.xml");
 	LOG("File error! SDL_Error: %s\n", SDL_GetError());
 
-	pugi::xml_parse_result result = storeConfig.load_file("config.xml");
+	xml_parse_result result = storeConfig.load_file("config.xml");
 	if (result)
 	{
 		LOG("No errors.");

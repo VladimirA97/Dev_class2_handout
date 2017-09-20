@@ -5,7 +5,6 @@
 
 #include "SDL/include/SDL.h"
 
-
 j1Window::j1Window() : j1Module()
 {
 	window = NULL;
@@ -19,7 +18,7 @@ j1Window::~j1Window()
 }
 
 // Called before render is available
-bool j1Window::Awake()
+bool j1Window::Awake(xml_node* readBranch)
 {
 	LOG("Init SDL window & surface");
 	bool ret = true;
@@ -34,31 +33,31 @@ bool j1Window::Awake()
 		//Create window
 		Uint32 flags = SDL_WINDOW_SHOWN;
 
-		width = WIDTH;
-		height = HEIGHT;
-		scale = SCALE;
+		width = readBranch->child("width").attribute("value").as_int();
+		height = readBranch->child("height").attribute("value").as_int();
+		scale = readBranch->child("scale").attribute("value").as_int();
 
-		if(FULLSCREEN)
+		if (readBranch->child("fullscreen").attribute("value").as_bool())
 		{
 			flags |= SDL_WINDOW_FULLSCREEN;
 		}
 
-		if(BORDERLESS)
+		if (readBranch->child("borderless").attribute("value").as_bool())
 		{
 			flags |= SDL_WINDOW_BORDERLESS;
 		}
 
-		if(RESIZABLE)
+		if (readBranch->child("resizable").attribute("value").as_bool())
 		{
 			flags |= SDL_WINDOW_RESIZABLE;
 		}
 
-		if(FULLSCREEN_WINDOW)
+		if (readBranch->child("fullscreen_window").attribute("value").as_bool())
 		{
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 		}
 
-		window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
+		window = SDL_CreateWindow("title", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
 
 		if(window == NULL)
 		{
@@ -72,8 +71,7 @@ bool j1Window::Awake()
 
 			// TODO 4: Read the title of the app from the XML
 			// and set directly the window title using SetTitle()
-			SetTitle(App->readBranch.child_value());
-
+			SetTitle(readBranch->child("name").attribute("value").as_string());
 		}
 	}
 
